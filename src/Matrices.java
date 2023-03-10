@@ -15,13 +15,15 @@ public class Matrices {
         }
         return resultado;
     }
+
+    public static int filas(int[][] matriz){
+        return matriz.length;
+    }
+
+    public static int columnas(int[][] matriz){
+        return 1;
+    }
     /*
-    public int filas(int[][] matriz){
-
-    }
-    public int columnas(int[][] matriz){
-
-    }
     public int[][] sumar (int[][] matrizA, int[][] matrizB){
 
     }*/
@@ -35,9 +37,9 @@ public class Matrices {
         matrizA [1][2] = 8;
         desplegar(matrizA);
         System.out.println("Largos");
-        System.out.println(matrizA[0].length);
-        System.out.println(matrizA.length);
-        int[][] matrizB = new int[0][0];
+        System.out.println("Filas: " + filas(matrizA));
+        System.out.println("Columnas: " + columnas(matrizA));
+        int[][] matrizB = new int[1][1];
         System.out.println("es cuadrada?: " + esCuadrada(matrizB));
         System.out.println(matrizB.length);
     }
