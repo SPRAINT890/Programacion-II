@@ -7,7 +7,7 @@ public class Matrices {
                 for (int x = 0; x < matriz[y].length; x++){
                     System.out.print(matriz[y][x] + " | ");
                 }
-                System.out.println("");
+                System.out.println();
             }
         }
         else{
@@ -16,11 +16,7 @@ public class Matrices {
     }
 
     public static boolean esCuadrada(int[][] matriz){
-        boolean resultado = false;
-        if (filas(matriz) > 0 && filas(matriz) == columnas(matriz)){
-            resultado = true;
-        }
-        return resultado;
+        return filas(matriz) > 0 && filas(matriz) == columnas(matriz);
     }
 
     public static int filas(int[][] matriz){
