@@ -5,9 +5,9 @@ public class Solicitud {
         System.out.println("Ingrese numeros y -1 para salir: ");
         int mayor = 0;
         int menor = 0;
-        int suma_todo = 0;
-        int suma_pos = 0;
-        int suma_neg = 0;
+        int sumaTodo = 0;
+        int sumaPos = 0;
+        int sumaNeg = 0;
         int c = 0;
 
         for (int usuario = Teclado.nextInt(); usuario != -1; usuario = Teclado.nextInt()){
@@ -23,18 +23,18 @@ public class Solicitud {
                 }
             }
             if (usuario > 0){
-                suma_pos += usuario;
+                sumaPos += usuario;
             }else {
-                suma_neg += usuario;
+                sumaNeg += usuario;
             }
-            suma_todo += usuario;
+            sumaTodo += usuario;
             c++;
         }
         System.out.println("Mayor: " + mayor);
         System.out.println("Menor: " + menor);
-        System.out.println("Suma total: " + suma_todo);
-        System.out.println("Suma de los positivos: " + suma_pos);
-        System.out.println("Suma de los negativos: " + suma_neg);
-        System.out.println("Promedio: " + suma_todo/c);
+        System.out.println("Suma total: " + sumaTodo);
+        System.out.println("Suma de los positivos: " + sumaPos);
+        System.out.println("Suma de los negativos: " + sumaNeg);
+        System.out.println("Promedio: " + sumaTodo/c);
     }
 }
