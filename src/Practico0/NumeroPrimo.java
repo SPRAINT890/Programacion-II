@@ -1,3 +1,5 @@
+package Practico0;
+
 import java.util.Scanner;
 public class NumeroPrimo {
     private static boolean esNumeroPrimo (int numero){

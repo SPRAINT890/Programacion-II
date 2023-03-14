@@ -1,3 +1,5 @@
+package Practico0;
+
 import java.util.Scanner;
 public class Conversion {
     private static double Fahrenheit (double celsius){

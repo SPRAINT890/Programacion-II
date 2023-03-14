@@ -1,3 +1,5 @@
+package Practico0;
+
 import java.util.Scanner;
 public class Solicitud {
     public static void main(String[] args) {

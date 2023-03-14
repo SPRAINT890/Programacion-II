@@ -1,3 +1,5 @@
+package Practico0;
+
 public class Matrices {
     public static void desplegar(int[][] matriz){
         if (matriz != null){
@@ -32,10 +34,10 @@ public class Matrices {
     public static int[][] sumar (int[][] matrizA, int[][] matrizB) {
         int[][] matResult;
         if (filas(matrizA) == filas(matrizB) && columnas(matrizA) == columnas(matrizB)) {
-            matResult = new int[filas(matrizA)][columnas(matrizA)];
+            matResult = matrizA;
             for (int x = 0; x < filas(matrizB); x++) {
                 for (int y = 0; y < columnas(matrizB); y++) {
-                    matResult[x][y] = matrizB[x][y] + matrizA[x][y];
+                    matResult[x][y] += matrizB[x][y];
                 }
             }
         } else {
