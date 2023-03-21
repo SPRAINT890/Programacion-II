@@ -2,21 +2,27 @@ package Practico1;
 
 public class Lista {
     Node head;
+    Node tail;
 
-    public void add(int data){
+    public void addLast(int data){
         Node newNode = new Node();
         newNode.data = data;
         newNode.next = null;
+        newNode.prev = null;
 
         if (head == null){
             head = newNode;
+            tail = newNode;
+            newNode.next = newNode;
+            newNode.prev = newNode;
         }
-        else{
-            Node tempNode = head;
-            while (tempNode.next != null){
-                tempNode = tempNode.next;
-            }
-            tempNode.next = newNode;
+        else {
+            Node tempNodeTail = tail;
+            tempNodeTail.next = newNode;
+            newNode.prev = tempNodeTail;
+            newNode.next = head;
+            tail = newNode;
+            head.prev = tail;
         }
     }
 
@@ -37,6 +43,7 @@ public class Lista {
     public void remove(int index){
         if (index == 0 ){
             head = head.next;
+            head.prev = tail;
         }
         else{
             Node tempNode = head;
@@ -45,8 +52,12 @@ public class Lista {
                 tempNode = tempNode.next;
             }
             nodeABorrar = tempNode.next;
+            if (nodeABorrar == tail){
+                tail = tempNode;
+            }
             tempNode.next = nodeABorrar.next;
-            nodeABorrar = null;
+            nodeABorrar = nodeABorrar.next;
+            nodeABorrar.prev = tempNode;
         }
     }
 
@@ -69,13 +80,21 @@ public class Lista {
     public void addFirst(int data){
         Node newNode = new Node();
         newNode.data = data;
+        newNode.prev = tail;
+        if (head == null){
+            head = newNode;
+            tail = newNode;
+        }
         newNode.next = head;
         head = newNode;
+        newNode = newNode.next;
+        newNode.prev = head;
     }
 
     public void insertAt(int index, int data){
         Node newNode = new Node();
         newNode.data = data;
+        newNode.prev = null;
         newNode.next = null;
 
         if (index == 0){
@@ -86,13 +105,13 @@ public class Lista {
                 tempNode = tempNode.next;
             }
             newNode.next = tempNode.next;
+            newNode.prev = tempNode;
             tempNode.next = newNode;
+            tempNode = tempNode.next;
+            tempNode = tempNode.next;
+            tempNode.prev = newNode;
         }
     }
-
-
-
-
 
     public void show() {
         Node node = head;
