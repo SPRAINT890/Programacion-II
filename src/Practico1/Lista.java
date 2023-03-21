@@ -20,31 +20,21 @@ public class Lista {
         }
     }
 
-    public void insertAtStart(int data){
-        Node newNode = new Node();
-        newNode.data = data;
-        newNode.next = head;
-        head = newNode;
-    }
+    public void get (int index){
+        if(index == 0){
+            System.out.println(head.data);
+        }else {
+            Node tempNode = new Node();
+            tempNode = head;
 
-    public void insertAt(int index, int data){
-        Node newNode = new Node();
-        newNode.data = data;
-        newNode.next = null;
-
-        if (index == 0){
-            insertAtStart(data);
-        }else{
-            Node tempNode = head;
-            for (int i=0; i<index-1; i++){
+            for (int i=0; i<index; i++){
                 tempNode = tempNode.next;
             }
-            newNode.next = tempNode.next;
-            tempNode.next = newNode;
+            System.out.println(tempNode.data);
         }
     }
 
-    public void deletAt(int index){
+    public void remove(int index){
         if (index == 0 ){
             head = head.next;
         }
@@ -60,19 +50,49 @@ public class Lista {
         }
     }
 
-    public void get (int index){
-        if(index == 0){
-            System.out.println(head.data);
-        }else {
-            Node tempNode = new Node();
-            tempNode = head;
+    //hasta aca primera parte
 
-            for (int i=0; i<index; i++){
-                tempNode = tempNode.next;
-            }
-            System.out.println(tempNode.data);
+    public void find(int data){
+        Node tempNode = new Node();
+        tempNode = head;
+        while(tempNode.data != data && tempNode.next != null){
+            tempNode = tempNode.next;
+        }
+        if (tempNode.data == data){
+            System.out.println(tempNode.data + " ya fue ingresado");
+        }else {
+            System.out.println(data + " no fue ingresado");
         }
     }
+    //hasta aca segunda parte
+
+    public void addFirst(int data){
+        Node newNode = new Node();
+        newNode.data = data;
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void insertAt(int index, int data){
+        Node newNode = new Node();
+        newNode.data = data;
+        newNode.next = null;
+
+        if (index == 0){
+            addFirst(data);
+        }else{
+            Node tempNode = head;
+            for (int i=0; i<index-1; i++){
+                tempNode = tempNode.next;
+            }
+            newNode.next = tempNode.next;
+            tempNode.next = newNode;
+        }
+    }
+
+
+
+
 
     public void show() {
         Node node = head;
