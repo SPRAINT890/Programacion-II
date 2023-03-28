@@ -1,6 +1,6 @@
 package Practico1;
 
-public class Lista {
+public class Lista implements ListaInrefaz {
     Node head;
     Node tail;
 
