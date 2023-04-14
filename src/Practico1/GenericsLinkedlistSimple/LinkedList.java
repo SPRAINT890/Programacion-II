@@ -68,4 +68,18 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
         }
         return tempNode.data;
     }
+
+    public boolean exist(V data){
+        Node <V> tempNode = head;
+        if (tempNode == null){
+            return false;
+        }
+        while (tempNode.next != null){
+            if (tempNode.data == data){
+                return true;
+            }
+            tempNode = tempNode.next;
+        }
+        return false;
+    }
 }

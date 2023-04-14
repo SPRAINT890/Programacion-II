@@ -122,6 +122,31 @@ class LinkedListTest {
         assertEquals(20, lista.get(4));
     }
     @Test
+    void existInNullList(){
+        LinkedList<Integer> lista = new LinkedList<>();
+        assertFalse(lista.exist(10));
+    }
+    @Test
+    void existInList(){
+        LinkedList<Integer> lista = new LinkedList<>();
+        lista.add(1);
+        lista.add(8);
+        lista.add(10);
+        lista.add(30);
+        lista.add(20);
+        assertTrue(lista.exist(10));
+    }
+    @Test
+    void notExistInList(){
+        LinkedList<Integer> lista = new LinkedList<>();
+        lista.add(1);
+        lista.add(8);
+        lista.add(10);
+        lista.add(30);
+        lista.add(20);
+        assertFalse(lista.exist(88));
+    }
+    @Test
     void addUnSoloElementoString(){
         LinkedList<String> lista = new LinkedList<>();
         lista.add("hola");
