@@ -1,11 +1,8 @@
 package Practico1.GenericsLinkedlistSimple;
 
 public class LinkedList <V> implements ListaInterfazSimple <V>{
-    private Node<V> head;
-
-    public Node<V> getHead() {
-        return head;
-    }
+    public Node<V> head;
+    
 
     @Override
     public void add(V value) {
@@ -15,10 +12,10 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
            return;
        }
        Node<V> tempNode = head;
-       while (tempNode.getNext() != null){
-           tempNode = tempNode.getNext();
+       while (tempNode.next != null){
+           tempNode = tempNode.next;
        }
-       tempNode.setNext(newNode);
+       tempNode.next = newNode;
     }
 
     @Override
@@ -30,15 +27,15 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
             return;
         }
         if (index == 0){
-            head = head.getNext();
+            head = head.next;
             return;
         }
         Node<V> tempNode = head;
         for (int c = 0; c < index-1; c++){
-            tempNode = tempNode.getNext();
+            tempNode = tempNode.next;
         }
-        Node<V> nodoBorrar = tempNode.getNext();
-        tempNode.setNext(nodoBorrar.getNext());
+        Node<V> nodoBorrar = tempNode.next;
+        tempNode.next = nodoBorrar.next;
     }
 
     public int length(){
@@ -47,9 +44,9 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
         }
         Node<V> tempNode = head;
         int c = 0;
-        while (tempNode.getNext() != null){
+        while (tempNode.next != null){
             c++;
-            tempNode = tempNode.getNext();
+            tempNode = tempNode.next;
         }
         return c;
     }
@@ -63,12 +60,12 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
             return null;
         }
         if (index == 0) {
-            return head.getData();
+            return head.data;
         }
         Node<V> tempNode = head;
         for (int c = 0; c < index; c++){
-            tempNode = tempNode.getNext();
+            tempNode = tempNode.next;
         }
-        return tempNode.getData();
+        return tempNode.data;
     }
 }

@@ -10,8 +10,8 @@ class LinkedListTest {
     void addUnSoloElementoInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
         lista.add(1);
-        Node<Integer> head = lista.getHead();
-        assertTrue(head.getData().equals(1)  && head.getNext() == null);
+        Node<Integer> head = lista.head;
+        assertTrue(head.data.equals(1)  && head.next == null);
     }
 
     @Test
@@ -20,19 +20,19 @@ class LinkedListTest {
         lista.add(1);
         lista.add(8);
         lista.add(9);
-        Node<Integer> nodoCero = lista.getHead();
-        Node<Integer> nodoUno = nodoCero.getNext();
-        Node<Integer> nodoDos = nodoUno.getNext();
-        assertTrue(nodoCero.getData().equals(1)  && nodoCero.getNext() != null);
-        assertTrue(nodoUno.getData().equals(8)  && nodoUno.getNext() != null);
-        assertTrue(nodoDos.getData().equals(9)  && nodoDos.getNext() == null);
+        Node<Integer> nodoCero = lista.head;
+        Node<Integer> nodoUno = nodoCero.next;
+        Node<Integer> nodoDos = nodoUno.next;
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null);
+        assertTrue(nodoDos.data.equals(9)  && nodoDos.next == null);
     }
 
     @Test
     void removeHeadNullInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
         lista.remove(12);
-        Node<Integer> head = lista.getHead();
+        Node<Integer> head = lista.head;
         assertNull(head);
     }
 
@@ -43,12 +43,12 @@ class LinkedListTest {
         lista.add(5);
         lista.add(8);
         lista.remove(12);
-        Node<Integer> nodoCero = lista.getHead();
-        Node<Integer> nodoUno = nodoCero.getNext();
-        Node<Integer> nodoDos = nodoUno.getNext();
-        assertTrue(nodoCero.getData().equals(1)  && nodoCero.getNext() != null);
-        assertTrue(nodoUno.getData().equals(5)  && nodoUno.getNext() != null);
-        assertTrue(nodoDos.getData().equals(8)  && nodoDos.getNext() == null);
+        Node<Integer> nodoCero = lista.head;
+        Node<Integer> nodoUno = nodoCero.next;
+        Node<Integer> nodoDos = nodoUno.next;
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(5)  && nodoUno.next != null);
+        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == null);
     }
 
     @Test
@@ -58,10 +58,10 @@ class LinkedListTest {
         lista.add(5);
         lista.add(8);
         lista.remove(0);
-        Node<Integer> nodoCero = lista.getHead();
-        Node<Integer> nodoUno = nodoCero.getNext();
-        assertTrue(nodoCero.getData().equals(5)  && nodoCero.getNext() != null);
-        assertTrue(nodoUno.getData().equals(8)  && nodoUno.getNext() == null);
+        Node<Integer> nodoCero = lista.head;
+        Node<Integer> nodoUno = nodoCero.next;
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == null);
     }
     @Test
     void removeVariosInteger(){
@@ -71,8 +71,8 @@ class LinkedListTest {
         lista.add(8);
         lista.remove(2);
         lista.remove(0);
-        Node<Integer> nodoCero = lista.getHead();
-        assertTrue(nodoCero.getData().equals(5)  && nodoCero.getNext() == null);
+        Node<Integer> nodoCero = lista.head;
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == null);
     }
 
     @Test
@@ -125,8 +125,8 @@ class LinkedListTest {
     void addUnSoloElementoString(){
         LinkedList<String> lista = new LinkedList<>();
         lista.add("hola");
-        Node<String> head = lista.getHead();
-        assertTrue(head.getData().equals("hola")  && head.getNext() == null);
+        Node<String> head = lista.head;
+        assertTrue(head.data.equals("hola")  && head.next == null);
     }
     @Test
     void addVariosElementoString(){
@@ -134,11 +134,11 @@ class LinkedListTest {
         lista.add("Hola");
         lista.add("como");
         lista.add("estas?");
-        Node<String> nodoCero = lista.getHead();
-        Node<String> nodoUno = nodoCero.getNext();
-        Node<String> nodoDos = nodoUno.getNext();
-        assertTrue(nodoCero.getData().equals("Hola")  && nodoCero.getNext() != null);
-        assertTrue(nodoUno.getData().equals("como")  && nodoUno.getNext() != null);
-        assertTrue(nodoDos.getData().equals("estas?")  && nodoDos.getNext() == null);
+        Node<String> nodoCero = lista.head;
+        Node<String> nodoUno = nodoCero.next;
+        Node<String> nodoDos = nodoUno.next;
+        assertTrue(nodoCero.data.equals("Hola")  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals("como")  && nodoUno.next != null);
+        assertTrue(nodoDos.data.equals("estas?")  && nodoDos.next == null);
     }
 }
