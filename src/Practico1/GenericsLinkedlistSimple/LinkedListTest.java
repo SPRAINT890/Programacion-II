@@ -7,25 +7,46 @@ import static org.junit.jupiter.api.Assertions.*;
 class LinkedListTest {
 
     @Test
-    void addUnSoloElementoInteger(){
+    void addLastUnSoloElementoInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
+        lista.addLast(1);
         Node<Integer> head = lista.head;
         assertTrue(head.data.equals(1)  && head.next == null);
     }
 
     @Test
-    void addVariosElementoInteger(){
+    void addLastVariosElementoInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(8);
-        lista.add(9);
+        lista.addLast(1);
+        lista.addLast(8);
+        lista.addLast(9);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
         assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null);
         assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null);
         assertTrue(nodoDos.data.equals(9)  && nodoDos.next == null);
+    }
+    @Test
+    void addFirstUnSoloElementoInteger(){
+        LinkedList<Integer> lista = new LinkedList<>();
+        lista.addFirst(1);
+        Node<Integer> head = lista.head;
+        assertTrue(head.data.equals(1)  && head.next == null);
+    }
+
+    @Test
+    void addFirstVariosElementoInteger(){
+        LinkedList<Integer> lista = new LinkedList<>();
+        lista.addFirst(1);
+        lista.addFirst(8);
+        lista.addFirst(9);
+        Node<Integer> nodoCero = lista.head;
+        Node<Integer> nodoUno = nodoCero.next;
+        Node<Integer> nodoDos = nodoUno.next;
+        assertTrue(nodoCero.data.equals(9)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null);
+        assertTrue(nodoDos.data.equals(1)  && nodoDos.next == null);
     }
 
     @Test
@@ -39,9 +60,9 @@ class LinkedListTest {
     @Test
     void removeFueraLengthInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(5);
-        lista.add(8);
+        lista.addLast(1);
+        lista.addLast(5);
+        lista.addLast(8);
         lista.remove(12);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
@@ -54,9 +75,9 @@ class LinkedListTest {
     @Test
     void removeIndexCeroInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(5);
-        lista.add(8);
+        lista.addLast(1);
+        lista.addLast(5);
+        lista.addLast(8);
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
@@ -66,9 +87,9 @@ class LinkedListTest {
     @Test
     void removeVariosInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(5);
-        lista.add(8);
+        lista.addLast(1);
+        lista.addLast(5);
+        lista.addLast(8);
         lista.remove(2);
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
@@ -88,37 +109,37 @@ class LinkedListTest {
     @Test
     void getFueraLength(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(8);
-        lista.add(10);
+        lista.addLast(1);
+        lista.addLast(8);
+        lista.addLast(10);
         assertNull(lista.get(12));
     }
     @Test
     void getHead(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(8);
-        lista.add(10);
+        lista.addLast(1);
+        lista.addLast(8);
+        lista.addLast(10);
         assertEquals(1, lista.get(0));
     }
     @Test
     void getElement(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(8);
-        lista.add(10);
-        lista.add(30);
-        lista.add(20);
+        lista.addLast(1);
+        lista.addLast(8);
+        lista.addLast(10);
+        lista.addLast(30);
+        lista.addLast(20);
         assertEquals(30, lista.get(3));
     }
     @Test
     void getLastElement(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(8);
-        lista.add(10);
-        lista.add(30);
-        lista.add(20);
+        lista.addLast(1);
+        lista.addLast(8);
+        lista.addLast(10);
+        lista.addLast(30);
+        lista.addLast(20);
         assertEquals(20, lista.get(4));
     }
     @Test
@@ -129,36 +150,36 @@ class LinkedListTest {
     @Test
     void existInList(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(8);
-        lista.add(10);
-        lista.add(30);
-        lista.add(20);
+        lista.addLast(1);
+        lista.addLast(8);
+        lista.addLast(10);
+        lista.addLast(30);
+        lista.addLast(20);
         assertTrue(lista.exist(10));
     }
     @Test
     void notExistInList(){
         LinkedList<Integer> lista = new LinkedList<>();
-        lista.add(1);
-        lista.add(8);
-        lista.add(10);
-        lista.add(30);
-        lista.add(20);
+        lista.addLast(1);
+        lista.addLast(8);
+        lista.addLast(10);
+        lista.addLast(30);
+        lista.addLast(20);
         assertFalse(lista.exist(88));
     }
     @Test
     void addUnSoloElementoString(){
         LinkedList<String> lista = new LinkedList<>();
-        lista.add("hola");
+        lista.addLast("hola");
         Node<String> head = lista.head;
         assertTrue(head.data.equals("hola")  && head.next == null);
     }
     @Test
     void addVariosElementoString(){
         LinkedList<String> lista = new LinkedList<>();
-        lista.add("Hola");
-        lista.add("como");
-        lista.add("estas?");
+        lista.addLast("Hola");
+        lista.addLast("como");
+        lista.addLast("estas?");
         Node<String> nodoCero = lista.head;
         Node<String> nodoUno = nodoCero.next;
         Node<String> nodoDos = nodoUno.next;

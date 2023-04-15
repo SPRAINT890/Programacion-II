@@ -5,7 +5,7 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
     
 
     @Override
-    public void add(V value) {
+    public void addLast(V value) {
        Node<V> newNode = new Node<> (value);
        if (head == null){
            head = newNode;
@@ -16,6 +16,16 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
            tempNode = tempNode.next;
        }
        tempNode.next = newNode;
+    }
+
+    public void addFirst(V value) {
+        Node<V> newNode = new Node<> (value);
+        if (head == null){
+            head = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
     }
 
     @Override
