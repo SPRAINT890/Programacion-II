@@ -41,14 +41,18 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         }
         if (index == 0){
             head = head.next;
+            head.prev = null;
             return;
         }
-        Node<V> tempNode = head;
+        Node<V> nodoAnterior = head;
         for (int c = 0; c < index-1; c++){
-            tempNode = tempNode.next;
+            nodoAnterior = nodoAnterior.next;
         }
-        Node<V> nodoBorrar = tempNode.next;
-        tempNode.next = nodoBorrar.next;
+        Node<V> nodoSiguiente = nodoAnterior.next;
+        nodoSiguiente = nodoSiguiente.next;
+
+        nodoAnterior.next = nodoSiguiente;
+        nodoSiguiente.prev = nodoAnterior;
     }
 
     @Override
