@@ -55,18 +55,40 @@ class LinkedListDobleRecursivaDobleRecursivaTest {
     }
 
     @Test
+    void removeFueraLengthHeadInteger(){
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
+        lista.addLast(1);
+        lista.addLast(5);
+        lista.addLast(8);
+        lista.remove(6);
+        Node<Integer> nodoCero = lista.head;
+        Node<Integer> nodoUno = nodoCero.next;
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == nodoUno && nodoCero.prev == nodoUno);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == nodoCero && nodoUno.prev == nodoCero);
+    }
+    @Test
+    void removeFueraLengthTailInteger(){
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
+        lista.addLast(1);
+        lista.addLast(5);
+        lista.addLast(8);
+        lista.remove(5);
+        Node<Integer> nodoCero = lista.head;
+        Node<Integer> nodoUno = nodoCero.next;
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next == nodoUno && nodoCero.prev == nodoUno);
+        assertTrue(nodoUno.data.equals(5)  && nodoUno.next == nodoCero && nodoUno.prev == nodoCero);
+    }
+    @Test
     void removeFueraLengthInteger(){
         LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(5);
         lista.addLast(8);
-        lista.remove(12);
+        lista.remove(4);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
-        Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(1)  && nodoCero.next == nodoUno && nodoCero.prev == nodoDos);
-        assertTrue(nodoUno.data.equals(5)  && nodoUno.next == nodoDos && nodoUno.prev == nodoCero);
-        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == nodoCero && nodoDos.prev == nodoUno);
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next == nodoUno && nodoCero.prev == nodoUno);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == nodoCero && nodoUno.prev == nodoCero);
     }
 
     @Test

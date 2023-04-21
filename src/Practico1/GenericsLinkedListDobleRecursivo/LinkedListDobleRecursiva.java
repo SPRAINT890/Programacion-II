@@ -47,19 +47,12 @@ public class LinkedListDobleRecursiva<V> implements ListaInterfazSimple<V> {
         if (head == null){
             return;
         }
-        if (index > this.length()){
-            return;
-        }
         if (index == 0){
-            head = head.next;
-            head.prev = tail;
-            tail.next = head;
+            removeHead();
             return;
         }
         if (index == this.length()){
-            tail = tail.prev;
-            tail.next = head;
-            head.prev = tail;
+            removeTail();
             return;
         }
         Node<V> nodoAnterior = head;
@@ -67,10 +60,28 @@ public class LinkedListDobleRecursiva<V> implements ListaInterfazSimple<V> {
             nodoAnterior = nodoAnterior.next;
         }
         Node<V> nodoSiguiente = nodoAnterior.next;
+        if (nodoSiguiente == head){
+            removeHead();
+            return;
+        }
+        if (nodoSiguiente == tail){
+            removeTail();
+            return;
+        }
         nodoSiguiente = nodoSiguiente.next;
-
         nodoAnterior.next = nodoSiguiente;
         nodoSiguiente.prev = nodoAnterior;
+    }
+
+    private void removeTail(){
+        tail = tail.prev;
+        tail.next = head;
+        head.prev = tail;
+    }
+    private void removeHead(){
+        head = head.next;
+        head.prev = tail;
+        tail.next = head;
     }
 
     @Override
