@@ -1,17 +1,17 @@
-package Practico1.GenericsLinkedListDoble;
+package Practico1.GenericsLinkedlistSimple;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListTest {
+class LinkedListSimpleTest {
 
     @Test
     void addLastUnSoloElementoInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
         lista.addLast(1);
         Node<Integer> head = lista.head;
-        assertTrue(head.data.equals(1)  && head.next == null && head.prev == null);
+        assertTrue(head.data.equals(1)  && head.next == null);
     }
 
     @Test
@@ -23,16 +23,16 @@ class LinkedListTest {
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null && nodoUno.prev != null);
-        assertTrue(nodoDos.data.equals(9)  && nodoDos.next == null && nodoDos.prev != null);
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null);
+        assertTrue(nodoDos.data.equals(9)  && nodoDos.next == null);
     }
     @Test
     void addFirstUnSoloElementoInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
         lista.addFirst(1);
         Node<Integer> head = lista.head;
-        assertTrue(head.data.equals(1)  && head.next == null && head.prev == null);
+        assertTrue(head.data.equals(1)  && head.next == null);
     }
 
     @Test
@@ -44,9 +44,9 @@ class LinkedListTest {
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(9)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null && nodoUno.prev != null);
-        assertTrue(nodoDos.data.equals(1)  && nodoDos.next == null && nodoDos.prev != null);
+        assertTrue(nodoCero.data.equals(9)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null);
+        assertTrue(nodoDos.data.equals(1)  && nodoDos.next == null);
     }
 
     @Test
@@ -66,9 +66,9 @@ class LinkedListTest {
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(5)  && nodoUno.next != null && nodoUno.prev != null);
-        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == null && nodoDos.prev != null);
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(5)  && nodoUno.next != null);
+        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == null);
     }
 
     @Test
@@ -80,8 +80,8 @@ class LinkedListTest {
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
-        assertTrue(nodoCero.data.equals(5)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == null && nodoUno.prev != null);
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next != null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == null);
     }
     @Test
     void removeVariosInteger(){
@@ -92,7 +92,7 @@ class LinkedListTest {
         lista.remove(2);
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
-        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == null && nodoCero.prev == null);
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == null);
     }
 
     @Test

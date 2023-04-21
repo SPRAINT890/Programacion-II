@@ -11,27 +11,35 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
        if (head == null){
            head = newNode;
            head.next = newNode;
-           tail = newNode;
+           head.prev = newNode;
+           tail = head;
            return;
        }
-       Node<V> tempNode = head;
-       while (tempNode.next != null){
-           tempNode = tempNode.next;
-       }
-       tempNode.next = newNode;
-       newNode.prev = tempNode;
+       tail.next = newNode;
+       newNode.prev = tail;
+       tail = newNode;
+       tail.next = head;
+       head.prev = tail;
     }
 
     @Override
     public void addFirst(V value) {
         Node<V> newNode = new Node<>(value);
         if (head == null){
+            newNode.next = newNode;
+            newNode.prev = newNode;
             head = newNode;
+            tail = newNode;
             return;
         }
-        newNode.next = head;
         head.prev = newNode;
+        if (this.length()+1 == 1){
+            head.next = newNode;
+        }
+        newNode.next = head;
+        newNode.prev = tail;
         head = newNode;
+        tail.next = head;
     }
 
     @Override
@@ -44,7 +52,14 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         }
         if (index == 0){
             head = head.next;
-            head.prev = null;
+            head.prev = tail;
+            tail.next = head;
+            return;
+        }
+        if (index == this.length()){
+            tail = tail.prev;
+            tail.next = head;
+            head.prev = tail;
             return;
         }
         Node<V> nodoAnterior = head;
@@ -65,7 +80,7 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         }
         Node<V> tempNode = head;
         int c = 0;
-        while (tempNode.next != null){
+        while (tempNode.next != head){
             c++;
             tempNode = tempNode.next;
         }
@@ -95,7 +110,7 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         if (tempNode == null){
             return false;
         }
-        while (tempNode.next != null){
+        while (tempNode.next != head){
             if (tempNode.data == data){
                 return true;
             }

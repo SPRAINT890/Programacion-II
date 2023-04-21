@@ -4,14 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListTest {
+class LinkedListDobleRecursivaTest {
 
     @Test
     void addLastUnSoloElementoInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
         lista.addLast(1);
-        Node<Integer> head = lista.head;
-        assertTrue(head.data.equals(1)  && head.next == null && head.prev == null);
+        assertTrue(lista.head.data.equals(1)  && lista.head.next == lista.head && lista.head.prev == lista.head);
     }
 
     @Test
@@ -23,16 +22,15 @@ class LinkedListTest {
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null && nodoUno.prev != null);
-        assertTrue(nodoDos.data.equals(9)  && nodoDos.next == null && nodoDos.prev != null);
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next == nodoUno && nodoCero.prev == nodoDos);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == nodoDos && nodoUno.prev == nodoCero);
+        assertTrue(nodoDos.data.equals(9)  && nodoDos.next == nodoCero && nodoDos.prev == nodoUno);
     }
     @Test
     void addFirstUnSoloElementoInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
         lista.addFirst(1);
-        Node<Integer> head = lista.head;
-        assertTrue(head.data.equals(1)  && head.next == null && head.prev == null);
+        assertTrue(lista.head.data.equals(1)  && lista.head.next == lista.head && lista.head.prev == lista.head);
     }
 
     @Test
@@ -44,9 +42,9 @@ class LinkedListTest {
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(9)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null && nodoUno.prev != null);
-        assertTrue(nodoDos.data.equals(1)  && nodoDos.next == null && nodoDos.prev != null);
+        assertTrue(nodoCero.data.equals(9)  && nodoCero.next == nodoUno && nodoCero.prev == nodoDos);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == nodoDos && nodoUno.prev == nodoCero);
+        assertTrue(nodoDos.data.equals(1)  && nodoDos.next == nodoCero && nodoDos.prev == nodoUno);
     }
 
     @Test
@@ -66,9 +64,9 @@ class LinkedListTest {
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(5)  && nodoUno.next != null && nodoUno.prev != null);
-        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == null && nodoDos.prev != null);
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next == nodoUno && nodoCero.prev == nodoDos);
+        assertTrue(nodoUno.data.equals(5)  && nodoUno.next == nodoDos && nodoUno.prev == nodoCero);
+        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == nodoCero && nodoDos.prev == nodoUno);
     }
 
     @Test
@@ -80,11 +78,11 @@ class LinkedListTest {
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
-        assertTrue(nodoCero.data.equals(5)  && nodoCero.next != null && nodoCero.prev == null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == null && nodoUno.prev != null);
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == nodoUno && nodoCero.prev == nodoUno);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == nodoCero && nodoUno.prev == nodoCero);
     }
     @Test
-    void removeVariosInteger(){
+    void removeTailInteger(){
         LinkedList<Integer> lista = new LinkedList<>();
         lista.addLast(1);
         lista.addLast(5);
@@ -92,7 +90,25 @@ class LinkedListTest {
         lista.remove(2);
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
-        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == null && nodoCero.prev == null);
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == nodoCero && nodoCero.prev == nodoCero);
+    }
+
+    @Test
+    void removeVariosInteger(){
+        LinkedList<Integer> lista = new LinkedList<>();
+        lista.addLast(4);//
+        lista.addLast(5);
+        lista.addLast(6);//
+        lista.addLast(7);
+        lista.addLast(8);
+        lista.remove(2);
+        lista.remove(0);
+        Node<Integer> nodoCero = lista.head;
+        Node<Integer> nodoUno = nodoCero.next;
+        Node<Integer> nodoDos = nodoUno.next;
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == nodoUno && nodoCero.prev == nodoDos);
+        assertTrue(nodoUno.data.equals(7)  && nodoUno.next == nodoDos && nodoUno.prev == nodoCero);
+        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == nodoCero && nodoDos.prev == nodoUno);
     }
 
     @Test
@@ -167,14 +183,14 @@ class LinkedListTest {
         assertFalse(lista.exist(88));
     }
     @Test
-    void addUnSoloElementoString(){
+    void addLastUnSoloElementoString(){
         LinkedList<String> lista = new LinkedList<>();
         lista.addLast("hola");
         Node<String> head = lista.head;
-        assertTrue(head.data.equals("hola")  && head.next == null);
+        assertTrue(head.data.equals("hola")  && head.next == head && head.prev == head);
     }
     @Test
-    void addVariosElementoString(){
+    void addLastVariosElementoString(){
         LinkedList<String> lista = new LinkedList<>();
         lista.addLast("Hola");
         lista.addLast("como");
@@ -182,8 +198,8 @@ class LinkedListTest {
         Node<String> nodoCero = lista.head;
         Node<String> nodoUno = nodoCero.next;
         Node<String> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals("Hola")  && nodoCero.next != null);
-        assertTrue(nodoUno.data.equals("como")  && nodoUno.next != null);
-        assertTrue(nodoDos.data.equals("estas?")  && nodoDos.next == null);
+        assertTrue(nodoCero.data.equals("Hola")  && nodoCero.next == nodoUno && nodoCero.prev == nodoDos);
+        assertTrue(nodoUno.data.equals("como")  && nodoUno.next == nodoDos && nodoUno.prev == nodoCero);
+        assertTrue(nodoDos.data.equals("estas?")  && nodoDos.next == nodoCero && nodoDos.prev == nodoUno);
     }
 }
