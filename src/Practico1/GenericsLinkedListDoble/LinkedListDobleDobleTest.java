@@ -1,64 +1,64 @@
-package Practico1.GenericsLinkedlistSimple;
+package Practico1.GenericsLinkedListDoble;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListSimpleTest {
+class LinkedListDobleDobleTest {
 
     @Test
     void addLastUnSoloElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         Node<Integer> head = lista.head;
-        assertTrue(head.data.equals(1)  && head.next == null);
+        assertTrue(head.data.equals(1)  && head.next == null && head.prev == null);
     }
 
     @Test
     void addLastVariosElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(9);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null);
-        assertTrue(nodoDos.data.equals(9)  && nodoDos.next == null);
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null && nodoCero.prev == null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null && nodoUno.prev != null);
+        assertTrue(nodoDos.data.equals(9)  && nodoDos.next == null && nodoDos.prev != null);
     }
     @Test
     void addFirstUnSoloElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addFirst(1);
         Node<Integer> head = lista.head;
-        assertTrue(head.data.equals(1)  && head.next == null);
+        assertTrue(head.data.equals(1)  && head.next == null && head.prev == null);
     }
 
     @Test
     void addFirstVariosElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addFirst(1);
         lista.addFirst(8);
         lista.addFirst(9);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(9)  && nodoCero.next != null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null);
-        assertTrue(nodoDos.data.equals(1)  && nodoDos.next == null);
+        assertTrue(nodoCero.data.equals(9)  && nodoCero.next != null && nodoCero.prev == null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next != null && nodoUno.prev != null);
+        assertTrue(nodoDos.data.equals(1)  && nodoDos.next == null && nodoDos.prev != null);
     }
 
     @Test
     void removeHeadNullInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.remove(12);
         assertNull(lista.head);
     }
 
     @Test
     void removeFueraLengthInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(5);
         lista.addLast(8);
@@ -66,48 +66,48 @@ class LinkedListSimpleTest {
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
         Node<Integer> nodoDos = nodoUno.next;
-        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null);
-        assertTrue(nodoUno.data.equals(5)  && nodoUno.next != null);
-        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == null);
+        assertTrue(nodoCero.data.equals(1)  && nodoCero.next != null && nodoCero.prev == null);
+        assertTrue(nodoUno.data.equals(5)  && nodoUno.next != null && nodoUno.prev != null);
+        assertTrue(nodoDos.data.equals(8)  && nodoDos.next == null && nodoDos.prev != null);
     }
 
     @Test
     void removeIndexCeroInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(5);
         lista.addLast(8);
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
         Node<Integer> nodoUno = nodoCero.next;
-        assertTrue(nodoCero.data.equals(5)  && nodoCero.next != null);
-        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == null);
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next != null && nodoCero.prev == null);
+        assertTrue(nodoUno.data.equals(8)  && nodoUno.next == null && nodoUno.prev != null);
     }
     @Test
     void removeVariosInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(5);
         lista.addLast(8);
         lista.remove(2);
         lista.remove(0);
         Node<Integer> nodoCero = lista.head;
-        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == null);
+        assertTrue(nodoCero.data.equals(5)  && nodoCero.next == null && nodoCero.prev == null);
     }
 
     @Test
     void lengthHeadNullInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         assertEquals(-1, lista.length());
     }
     @Test
     void getHeadNull(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         assertNull(lista.get(12));
     }
     @Test
     void getFueraLength(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -115,7 +115,7 @@ class LinkedListSimpleTest {
     }
     @Test
     void getHead(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -123,7 +123,7 @@ class LinkedListSimpleTest {
     }
     @Test
     void getElement(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -133,7 +133,7 @@ class LinkedListSimpleTest {
     }
     @Test
     void getLastElement(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -143,12 +143,12 @@ class LinkedListSimpleTest {
     }
     @Test
     void existInNullList(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         assertFalse(lista.exist(10));
     }
     @Test
     void existInList(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -158,7 +158,7 @@ class LinkedListSimpleTest {
     }
     @Test
     void notExistInList(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDoble<Integer> lista = new LinkedListDoble<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -168,14 +168,14 @@ class LinkedListSimpleTest {
     }
     @Test
     void addUnSoloElementoString(){
-        LinkedList<String> lista = new LinkedList<>();
+        LinkedListDoble<String> lista = new LinkedListDoble<>();
         lista.addLast("hola");
         Node<String> head = lista.head;
         assertTrue(head.data.equals("hola")  && head.next == null);
     }
     @Test
     void addVariosElementoString(){
-        LinkedList<String> lista = new LinkedList<>();
+        LinkedListDoble<String> lista = new LinkedListDoble<>();
         lista.addLast("Hola");
         lista.addLast("como");
         lista.addLast("estas?");

@@ -1,31 +1,45 @@
-package Practico1.GenericsLinkedlistSimple;
+package Practico1.GenericsLinkedListDobleRecursivo;
 
-public class LinkedList <V> implements ListaInterfazSimple <V>{
+public class LinkedListDobleRecursiva<V> implements ListaInterfazSimple<V> {
     public Node<V> head;
+    public Node<V> tail;
     
 
     @Override
     public void addLast(V value) {
-       Node<V> newNode = new Node<> (value);
+       Node<V> newNode = new Node<>(value);
        if (head == null){
            head = newNode;
+           head.next = newNode;
+           head.prev = newNode;
+           tail = head;
            return;
        }
-       Node<V> tempNode = head;
-       while (tempNode.next != null){
-           tempNode = tempNode.next;
-       }
-       tempNode.next = newNode;
+       tail.next = newNode;
+       newNode.prev = tail;
+       tail = newNode;
+       tail.next = head;
+       head.prev = tail;
     }
 
+    @Override
     public void addFirst(V value) {
-        Node<V> newNode = new Node<> (value);
+        Node<V> newNode = new Node<>(value);
         if (head == null){
+            newNode.next = newNode;
+            newNode.prev = newNode;
             head = newNode;
+            tail = newNode;
             return;
         }
+        head.prev = newNode;
+        if (this.length()+1 == 1){
+            head.next = newNode;
+        }
         newNode.next = head;
+        newNode.prev = tail;
         head = newNode;
+        tail.next = head;
     }
 
     @Override
@@ -38,23 +52,35 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
         }
         if (index == 0){
             head = head.next;
+            head.prev = tail;
+            tail.next = head;
             return;
         }
-        Node<V> tempNode = head;
-        for (int c = 0; c < index-1; c++){
-            tempNode = tempNode.next;
+        if (index == this.length()){
+            tail = tail.prev;
+            tail.next = head;
+            head.prev = tail;
+            return;
         }
-        Node<V> nodoBorrar = tempNode.next;
-        tempNode.next = nodoBorrar.next;
+        Node<V> nodoAnterior = head;
+        for (int c = 0; c < index-1; c++){
+            nodoAnterior = nodoAnterior.next;
+        }
+        Node<V> nodoSiguiente = nodoAnterior.next;
+        nodoSiguiente = nodoSiguiente.next;
+
+        nodoAnterior.next = nodoSiguiente;
+        nodoSiguiente.prev = nodoAnterior;
     }
 
+    @Override
     public int length(){
         if (head == null){
             return -1;
         }
         Node<V> tempNode = head;
         int c = 0;
-        while (tempNode.next != null){
+        while (tempNode.next != head){
             c++;
             tempNode = tempNode.next;
         }
@@ -80,11 +106,11 @@ public class LinkedList <V> implements ListaInterfazSimple <V>{
     }
 
     public boolean exist(V data){
-        Node <V> tempNode = head;
+        Node<V> tempNode = head;
         if (tempNode == null){
             return false;
         }
-        while (tempNode.next != null){
+        while (tempNode.next != head){
             if (tempNode.data == data){
                 return true;
             }

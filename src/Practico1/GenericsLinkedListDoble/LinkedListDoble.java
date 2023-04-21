@@ -1,8 +1,7 @@
-package Practico1.GenericsLinkedListDobleRecursivo;
+package Practico1.GenericsLinkedListDoble;
 
-public class LinkedList <V> implements ListaInterfazSimple<V> {
+public class LinkedListDoble<V> implements ListaInterfazSimple<V> {
     public Node<V> head;
-    public Node<V> tail;
     
 
     @Override
@@ -10,36 +9,26 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
        Node<V> newNode = new Node<>(value);
        if (head == null){
            head = newNode;
-           head.next = newNode;
-           head.prev = newNode;
-           tail = head;
            return;
        }
-       tail.next = newNode;
-       newNode.prev = tail;
-       tail = newNode;
-       tail.next = head;
-       head.prev = tail;
+       Node<V> tempNode = head;
+       while (tempNode.next != null){
+           tempNode = tempNode.next;
+       }
+       tempNode.next = newNode;
+       newNode.prev = tempNode;
     }
 
     @Override
     public void addFirst(V value) {
         Node<V> newNode = new Node<>(value);
         if (head == null){
-            newNode.next = newNode;
-            newNode.prev = newNode;
             head = newNode;
-            tail = newNode;
             return;
         }
-        head.prev = newNode;
-        if (this.length()+1 == 1){
-            head.next = newNode;
-        }
         newNode.next = head;
-        newNode.prev = tail;
+        head.prev = newNode;
         head = newNode;
-        tail.next = head;
     }
 
     @Override
@@ -52,14 +41,7 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         }
         if (index == 0){
             head = head.next;
-            head.prev = tail;
-            tail.next = head;
-            return;
-        }
-        if (index == this.length()){
-            tail = tail.prev;
-            tail.next = head;
-            head.prev = tail;
+            head.prev = null;
             return;
         }
         Node<V> nodoAnterior = head;
@@ -80,7 +62,7 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         }
         Node<V> tempNode = head;
         int c = 0;
-        while (tempNode.next != head){
+        while (tempNode.next != null){
             c++;
             tempNode = tempNode.next;
         }
@@ -110,7 +92,7 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         if (tempNode == null){
             return false;
         }
-        while (tempNode.next != head){
+        while (tempNode.next != null){
             if (tempNode.data == data){
                 return true;
             }

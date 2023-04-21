@@ -1,12 +1,12 @@
-package Practico1.GenericsLinkedListDoble;
+package Practico1.GenericsLinkedlistSimple;
 
-public class LinkedList <V> implements ListaInterfazSimple<V> {
+public class LinkedListSimple<V> implements ListaInterfazSimple <V>{
     public Node<V> head;
     
 
     @Override
     public void addLast(V value) {
-       Node<V> newNode = new Node<>(value);
+       Node<V> newNode = new Node<> (value);
        if (head == null){
            head = newNode;
            return;
@@ -16,18 +16,15 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
            tempNode = tempNode.next;
        }
        tempNode.next = newNode;
-       newNode.prev = tempNode;
     }
 
-    @Override
     public void addFirst(V value) {
-        Node<V> newNode = new Node<>(value);
+        Node<V> newNode = new Node<> (value);
         if (head == null){
             head = newNode;
             return;
         }
         newNode.next = head;
-        head.prev = newNode;
         head = newNode;
     }
 
@@ -41,21 +38,16 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
         }
         if (index == 0){
             head = head.next;
-            head.prev = null;
             return;
         }
-        Node<V> nodoAnterior = head;
+        Node<V> tempNode = head;
         for (int c = 0; c < index-1; c++){
-            nodoAnterior = nodoAnterior.next;
+            tempNode = tempNode.next;
         }
-        Node<V> nodoSiguiente = nodoAnterior.next;
-        nodoSiguiente = nodoSiguiente.next;
-
-        nodoAnterior.next = nodoSiguiente;
-        nodoSiguiente.prev = nodoAnterior;
+        Node<V> nodoBorrar = tempNode.next;
+        tempNode.next = nodoBorrar.next;
     }
 
-    @Override
     public int length(){
         if (head == null){
             return -1;
@@ -88,7 +80,7 @@ public class LinkedList <V> implements ListaInterfazSimple<V> {
     }
 
     public boolean exist(V data){
-        Node<V> tempNode = head;
+        Node <V> tempNode = head;
         if (tempNode == null){
             return false;
         }

@@ -4,18 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListDobleRecursivaTest {
+class LinkedListDobleRecursivaDobleRecursivaTest {
 
     @Test
     void addLastUnSoloElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         assertTrue(lista.head.data.equals(1)  && lista.head.next == lista.head && lista.head.prev == lista.head);
     }
 
     @Test
     void addLastVariosElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(9);
@@ -28,14 +28,14 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void addFirstUnSoloElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addFirst(1);
         assertTrue(lista.head.data.equals(1)  && lista.head.next == lista.head && lista.head.prev == lista.head);
     }
 
     @Test
     void addFirstVariosElementoInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addFirst(1);
         lista.addFirst(8);
         lista.addFirst(9);
@@ -49,14 +49,14 @@ class LinkedListDobleRecursivaTest {
 
     @Test
     void removeHeadNullInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.remove(12);
         assertNull(lista.head);
     }
 
     @Test
     void removeFueraLengthInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(5);
         lista.addLast(8);
@@ -71,7 +71,7 @@ class LinkedListDobleRecursivaTest {
 
     @Test
     void removeIndexCeroInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(5);
         lista.addLast(8);
@@ -83,7 +83,7 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void removeTailInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(5);
         lista.addLast(8);
@@ -95,7 +95,7 @@ class LinkedListDobleRecursivaTest {
 
     @Test
     void removeVariosInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(4);//
         lista.addLast(5);
         lista.addLast(6);//
@@ -113,17 +113,17 @@ class LinkedListDobleRecursivaTest {
 
     @Test
     void lengthHeadNullInteger(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         assertEquals(-1, lista.length());
     }
     @Test
     void getHeadNull(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         assertNull(lista.get(12));
     }
     @Test
     void getFueraLength(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -131,7 +131,7 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void getHead(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -139,7 +139,7 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void getElement(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -149,7 +149,7 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void getLastElement(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -159,12 +159,12 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void existInNullList(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         assertFalse(lista.exist(10));
     }
     @Test
     void existInList(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -174,7 +174,7 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void notExistInList(){
-        LinkedList<Integer> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<Integer> lista = new LinkedListDobleRecursiva<>();
         lista.addLast(1);
         lista.addLast(8);
         lista.addLast(10);
@@ -184,14 +184,14 @@ class LinkedListDobleRecursivaTest {
     }
     @Test
     void addLastUnSoloElementoString(){
-        LinkedList<String> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<String> lista = new LinkedListDobleRecursiva<>();
         lista.addLast("hola");
         Node<String> head = lista.head;
         assertTrue(head.data.equals("hola")  && head.next == head && head.prev == head);
     }
     @Test
     void addLastVariosElementoString(){
-        LinkedList<String> lista = new LinkedList<>();
+        LinkedListDobleRecursiva<String> lista = new LinkedListDobleRecursiva<>();
         lista.addLast("Hola");
         lista.addLast("como");
         lista.addLast("estas?");
