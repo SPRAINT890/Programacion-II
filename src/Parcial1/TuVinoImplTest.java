@@ -51,6 +51,19 @@ class TuVinoImplTest {
         empresa.agregarVinoQueGusta(53636064, "Malbec");
         assertEquals(empresa.getUsuariosRegistrados().get(0).getMeGusta().size(), 1);
     }
+
+    @Test
+    void agregarVinoQueLeGustaRepetido() throws EntidadYaExiste, EntidadNoExiste {
+        TuVinoImpl empresa = new TuVinoImpl();
+        empresa.agregarPersona(53636064);
+        empresa.crearVino("Malbec", "Dulce", "Peru", 1092);
+        try {
+            empresa.agregarVinoQueGusta(53636064, "Malbec");
+            empresa.agregarVinoQueGusta(53636064, "Malbec");
+        }catch (EntidadYaExiste e){
+            assertEquals(empresa.getUsuariosRegistrados().get(0).getMeGusta().size(), 1);
+        }
+    }
     @Test
     void agregarVinoQueLeGustaSinAgregarUsuario() throws EntidadYaExiste, EntidadNoExiste {
         TuVinoImpl empresa = new TuVinoImpl();
@@ -114,5 +127,20 @@ class TuVinoImplTest {
         empresa.agregarVinoQueGusta(53636064, "Malbec");
         empresa.agregarRecomendación(53636064, 53636063, "Malbec");
         assertEquals(empresa.getUsuariosRegistrados().get(1).getRecomendaciones().dequeue().getVinoARecomendar().getNombre(), "Malbec");
+    }
+
+    @Test
+    void agregarRecomendaciónRepetida() throws EntidadYaExiste, EntidadNoExiste, EmptyQueueException {
+        TuVinoImpl empresa = new TuVinoImpl();
+        empresa.agregarPersona(53636064);
+        empresa.agregarPersona(53636063);
+        empresa.crearVino("Malbec", "Dulce", "Peru", 1092);
+        empresa.agregarVinoQueGusta(53636064, "Malbec");
+        try {
+            empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+            empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+        }catch (EntidadYaExiste e){
+            assertEquals(empresa.getUsuariosRegistrados().get(1).getRecomendaciones().size(), 1);
+        }
     }
 }

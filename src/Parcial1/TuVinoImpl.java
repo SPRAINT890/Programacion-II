@@ -50,6 +50,9 @@ public class TuVinoImpl implements TuVinoMgt {
                 usuarioAgregarLike = usuariosRegistrados.get(c);
             }
         }
+        if (usuarioAgregarLike.getMeGusta().contains(vinoQueLeGusta)) {
+            throw new EntidadYaExiste("Este Vino ya fue agregado");
+        }
         usuarioAgregarLike.getMeGusta().add(vinoQueLeGusta);
     }
 
@@ -62,7 +65,7 @@ public class TuVinoImpl implements TuVinoMgt {
     }
 
     @Override
-    public void agregarRecomendación(int cedula, int cedulaARecomendar, String nombreVino) throws EntidadNoExiste {
+    public void agregarRecomendación(int cedula, int cedulaARecomendar, String nombreVino) throws EntidadNoExiste, EntidadYaExiste {
         Usuario usuarioRecomienda = null;
         Usuario usuarioRecomendado = null;
         Vino vinoRecomendado = null;
@@ -89,6 +92,9 @@ public class TuVinoImpl implements TuVinoMgt {
         //Verifico que exista los usuarios y el vino y extraigo los datos
 
         Recomendacion newRecomendacion = new Recomendacion(vinoRecomendado, usuarioRecomienda);
+        if (usuarioRecomendado.getRecomendaciones().contains(newRecomendacion)){
+            throw new EntidadYaExiste("Esta recomendacion ya existe");
+        }
         usuarioRecomendado.getRecomendaciones().enqueue(newRecomendacion);
     }
 
