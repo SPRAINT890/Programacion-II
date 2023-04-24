@@ -7,6 +7,7 @@ import Parcial1.exceptions.EntidadNoExiste;
 import Parcial1.exceptions.EntidadYaExiste;
 import StackQueue.src.linkedlist.MyLinkedListImpl;
 import StackQueue.src.linkedlist.MyList;
+import StackQueue.src.queue.EmptyQueueException;
 
 public class TuVinoImpl implements TuVinoMgt {
     private MyList<Vino> vinosRegistrados = new MyLinkedListImpl<>();
@@ -35,20 +36,11 @@ public class TuVinoImpl implements TuVinoMgt {
         }catch (EntidadYaExiste e){
 
         }
-        Vino vinoQueLeGusta = null;
-        Usuario usuarioAgregarLike = null;
-        for (int c = 0; c < vinosRegistrados.size(); c++){
-            if (vinosRegistrados.get(c).getNombre() == nombreVino){
-                vinoQueLeGusta = vinosRegistrados.get(c);
-            }
-        }
+        Vino vinoQueLeGusta = obtenerVino(nombreVino);
+        Usuario usuarioAgregarLike = obtenerUsuario(cedula);
+
         if (vinoQueLeGusta == null){
             throw new EntidadNoExiste("Este Vino no existe");
-        }
-        for (int c = 0; c < usuariosRegistrados.size(); c++){
-            if (usuariosRegistrados.get(c).getCedula() == cedula){
-                usuarioAgregarLike = usuariosRegistrados.get(c);
-            }
         }
         if (usuarioAgregarLike.getMeGusta().contains(vinoQueLeGusta)) {
             throw new EntidadYaExiste("Este Vino ya fue agregado");
@@ -66,27 +58,17 @@ public class TuVinoImpl implements TuVinoMgt {
 
     @Override
     public void agregarRecomendación(int cedula, int cedulaARecomendar, String nombreVino) throws EntidadNoExiste, EntidadYaExiste {
-        Usuario usuarioRecomienda = null;
-        Usuario usuarioRecomendado = null;
-        Vino vinoRecomendado = null;
-        for (int c = 0; c<usuariosRegistrados.size(); c++){
-             if (usuariosRegistrados.get(c).getCedula() == cedula){
-                 usuarioRecomienda = usuariosRegistrados.get(c);
-             }
-             if (usuariosRegistrados.get(c).getCedula() == cedulaARecomendar){
-                 usuarioRecomendado = usuariosRegistrados.get(c);
-             }
-        }
+        Usuario usuarioRecomienda = obtenerUsuario(cedula);
+        Usuario usuarioRecomendado = obtenerUsuario(cedulaARecomendar);
+        Vino vinoRecomendado = obtenerVino(nombreVino);
+
         if (usuarioRecomendado == null || usuarioRecomienda == null){
             throw new EntidadNoExiste("uno de los dos usuarios no existe");
         }
-
-        for (int c = 0; c<usuarioRecomienda.getMeGusta().size(); c++){
-            if (usuarioRecomienda.getMeGusta().get(c).getNombre() == nombreVino){
-                vinoRecomendado = usuarioRecomienda.getMeGusta().get(c);
-            }
-        }
         if (vinoRecomendado == null){
+            throw new EntidadNoExiste("El vino no existe");
+        }
+        if (!usuarioRecomienda.getMeGusta().contains(vinoRecomendado)){
             throw new EntidadNoExiste("El vino no esta en tu lista de me gusta");
         }
         //Verifico que exista los usuarios y el vino y extraigo los datos
@@ -99,8 +81,33 @@ public class TuVinoImpl implements TuVinoMgt {
     }
 
     @Override
-    public Vino obtenerProximaRecomendación(int cedula) {
-        return null;
+    public Vino obtenerProximaRecomendación(int cedula) throws EmptyQueueException {
+        Usuario usuario = obtenerUsuario(cedula);
+        try {
+            return usuario.getRecomendaciones().dequeue().getVinoARecomendar();
+        }catch (EmptyQueueException e){
+            return null;
+        }
+    }
+
+    public Usuario obtenerUsuario (int cedula){
+        Usuario usuario = null;
+        for (int c = 0; c<usuariosRegistrados.size(); c++){
+            if (usuariosRegistrados.get(c).getCedula() == cedula){
+                usuario = usuariosRegistrados.get(c);
+            }
+        }
+        return usuario;
+    }
+
+    public Vino obtenerVino (String nombreVino){
+        Vino vino = null;
+        for (int c = 0; c<vinosRegistrados.size(); c++){
+            if (vinosRegistrados.get(c).getNombre() == nombreVino){
+                vino = vinosRegistrados.get(c);
+            }
+        }
+        return vino;
     }
 
     @Override

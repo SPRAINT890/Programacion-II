@@ -21,6 +21,7 @@ class TuVinoImplTest {
         try {
             empresa.crearVino("Malbec", "Dulce", "Peru", 1092);
             empresa.crearVino("Malbec", "Dulce", "Peru", 1092);
+            assertTrue(false);
         }catch (EntidadYaExiste e){
             assertEquals(empresa.getVinosRegistrados().size(), 1);
         }
@@ -39,6 +40,7 @@ class TuVinoImplTest {
         empresa.agregarPersona(53636064);
         try {
             empresa.agregarPersona(53636064);
+            assertTrue(false);
         }catch (EntidadYaExiste e){
             assertEquals(empresa.getUsuariosRegistrados().size(), 1);
         }
@@ -60,6 +62,7 @@ class TuVinoImplTest {
         try {
             empresa.agregarVinoQueGusta(53636064, "Malbec");
             empresa.agregarVinoQueGusta(53636064, "Malbec");
+            assertTrue(false);
         }catch (EntidadYaExiste e){
             assertEquals(empresa.getUsuariosRegistrados().get(0).getMeGusta().size(), 1);
         }
@@ -76,6 +79,7 @@ class TuVinoImplTest {
         TuVinoImpl empresa = new TuVinoImpl();
         try {
             empresa.agregarVinoQueGusta(53636064, "Malbec");
+            assertTrue(false);
         }catch (EntidadNoExiste e){
             assertTrue(true);
         }
@@ -88,6 +92,7 @@ class TuVinoImplTest {
         empresa.agregarVinoQueGusta(53636064, "Malbec");
         try {
             empresa.agregarRecomendación(53636063, 53636064, "Malbec");
+            assertTrue(false);
         }catch (EntidadNoExiste e){
             assertTrue(true);
         }
@@ -101,19 +106,33 @@ class TuVinoImplTest {
         empresa.agregarVinoQueGusta(53636064, "Malbec");
         try {
             empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+            assertTrue(false);
         }catch (EntidadNoExiste e){
             assertTrue(true);
         }
     }
 
     @Test
-    void agregarRecomendaciónVinoARecomendarNoExiste() throws EntidadYaExiste, EntidadNoExiste {
+    void agregarRecomendaciónVinoARecomendarNoExisteMegusta() throws EntidadYaExiste, EntidadNoExiste {
         TuVinoImpl empresa = new TuVinoImpl();
         empresa.agregarPersona(53636064);
         empresa.agregarPersona(53636063);
         empresa.crearVino("Malbec", "Dulce", "Peru", 1092);
         try {
             empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+            assertTrue(false);
+        }catch (EntidadNoExiste e){
+            assertTrue(true);
+        }
+    }
+    @Test
+    void agregarRecomendaciónVinoARecomendarNoExiste() throws EntidadYaExiste, EntidadNoExiste {
+        TuVinoImpl empresa = new TuVinoImpl();
+        empresa.agregarPersona(53636064);
+        empresa.agregarPersona(53636063);
+        try {
+            empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+            assertTrue(false);
         }catch (EntidadNoExiste e){
             assertTrue(true);
         }
@@ -139,8 +158,30 @@ class TuVinoImplTest {
         try {
             empresa.agregarRecomendación(53636064, 53636063, "Malbec");
             empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+            assertTrue(false);
         }catch (EntidadYaExiste e){
             assertEquals(empresa.getUsuariosRegistrados().get(1).getRecomendaciones().size(), 1);
         }
+    }
+
+    @Test
+    void obtenerProximaRecomendación() throws EntidadYaExiste, EntidadNoExiste, EmptyQueueException {
+        TuVinoImpl empresa = new TuVinoImpl();
+        empresa.agregarPersona(53636064);
+        empresa.agregarPersona(53636063);
+        empresa.crearVino("Malbec", "Dulce", "Peru", 1092);
+        empresa.agregarVinoQueGusta(53636064, "Malbec");
+        empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+        assertTrue(empresa.obtenerProximaRecomendación(53636063).getNombre() == "Malbec");
+    }
+    @Test
+    void obtenerProximaRecomendaciónNull() throws EntidadYaExiste, EntidadNoExiste, EmptyQueueException {
+        TuVinoImpl empresa = new TuVinoImpl();
+        empresa.agregarPersona(53636064);
+        empresa.agregarPersona(53636063);
+        empresa.crearVino("Malbec", "Dulce", "Peru", 1092);
+        empresa.agregarVinoQueGusta(53636064, "Malbec");
+        empresa.agregarRecomendación(53636064, 53636063, "Malbec");
+        assertNull(empresa.obtenerProximaRecomendación(53636064));
     }
 }
