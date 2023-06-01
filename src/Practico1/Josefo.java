@@ -5,7 +5,7 @@ import Practico1.GenericsLinkedListDobleRecursivo.LinkedListDobleRecursiva;
 public class Josefo {
     public static LinkedListDobleRecursiva agregarPersonasCirculo(){
         LinkedListDobleRecursiva<Integer> personasEnCirculo = new LinkedListDobleRecursiva<>();
-        for (int c = 0; c < 6; c++){
+        for (int c = 0; c < 8; c++){
             personasEnCirculo.addLast(c);
         }
         return personasEnCirculo;
@@ -13,9 +13,12 @@ public class Josefo {
 
     public static void jugar(LinkedListDobleRecursiva<Integer> circulo){
         LinkedListDobleRecursiva<Integer> ordenEliminados = new LinkedListDobleRecursiva<>();
+        int i = 2;
         while (circulo.head.next != circulo.head){
-            ordenEliminados.addLast(circulo.get(0));
-            circulo.remove(2);
+            ordenEliminados.addLast(circulo.get(i));
+            circulo.remove(i);
+            i += 2;
+
         }
         System.out.println("Ganador es el numero: " + circulo.get(0));
         System.out.println("Orden de salida: ");

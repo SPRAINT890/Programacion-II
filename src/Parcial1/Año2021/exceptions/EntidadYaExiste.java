@@ -1,4 +1,4 @@
-package Parcial1.exceptions;
+package Parcial1.Año2021.exceptions;
 
 public class EntidadYaExiste extends Exception {
 

@@ -103,9 +103,6 @@ public class LinkedListDobleRecursiva<V> implements ListaInterfazSimple<V> {
         if (head == null){
             return null;
         }
-        if (index > this.length()){
-            return null;
-        }
         if (index == 0) {
             return head.data;
         }
